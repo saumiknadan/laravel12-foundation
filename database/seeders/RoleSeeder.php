@@ -13,12 +13,17 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        // Clear cached roles and permissions to avoid conflicts
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        $role = Role::firstOrCreate([
+            'name' => 'Super Admin',
+            'guard_name' => 'web',
+        ]);
 
-        Role::firstOrCreate(['name' => 'Super Admin']);
-        Role::firstOrCreate(['name' => 'Admin']);
-        Role::firstOrCreate(['name' => 'Editor']);
-        Role::firstOrCreate(['name' => 'User']);
+        $role->givePermissionTo([
+            'users.view',
+            'users.create',
+            'users.edit',
+            'users.delete',
+        ]);
+
     }
 }
