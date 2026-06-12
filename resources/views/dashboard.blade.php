@@ -594,6 +594,6 @@
 
 
 
-@section('script')
+@push('scripts')
 
-@endsection
+@endpush

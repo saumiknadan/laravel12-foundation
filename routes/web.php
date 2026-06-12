@@ -1,19 +1,24 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\DashboardController;
+// use App\Http\Controllers\Admin\DashboardController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::middleware(['auth', 'role:Super Admin'])->group(function () {
+Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/admin', function () {
-        return "Admin Panel";
-    });
+// Route::middleware(['auth', 'role:Super Admin'])->group(function () {
 
-});
+//     Route::get('/admin', function () {
+//         return "Admin Panel";
+//     });
+
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

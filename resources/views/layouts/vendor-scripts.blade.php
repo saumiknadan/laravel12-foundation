@@ -86,6 +86,6 @@
 		
 	</script>
 
-    @yield('script')
+  @stack('scripts')
 
 
