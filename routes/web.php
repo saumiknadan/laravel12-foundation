@@ -30,4 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::get('/cache/clear', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    return redirect()->back()->with('success','System Cache Has Been Removed.');
+  })->name('admin-cache-clear');
+
 require __DIR__.'/auth.php';

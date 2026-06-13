@@ -1,27 +1,38 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+@extends('auth.partials.master')
+
+@section('auth-title') Confirm Password @endsection
+
+@section('auth-style')  @endsection
+
+@section('auth-content')
+    <div class="text-center mb-3">
+        <a href="{{ route('dashboard') }}"><img src="{{ asset('assets/images/logo-full.png') }}" alt=""></a>
     </div>
+
+    <h4 class="text-center mb-3">Confirm Password</h4>
+    <p class="text-center mb-4">This is a secure area. Please confirm your password before continuing.</p>
 
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
 
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="mb-3">
+            <label class="mb-1"><strong>Password</strong></label>
+            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
+            @error('password')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-block">Confirm</button>
         </div>
     </form>
-</x-guest-layout>
+
+    <div class="new-account mt-3">
+        <p><a class="text-primary" href="{{ route('dashboard') }}">Back to Dashboard</a></p>
+    </div>
+@endsection
+
+@push('auth-script')
+    
+@endpush()

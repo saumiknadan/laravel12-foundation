@@ -101,6 +101,11 @@
 							<span class="nav-text">Widget</span>
 						</a>
 					</li>
+                    <li><a href="{{ route('admin-cache-clear') }}" class="" aria-expanded="false">
+							<i class="fas fa-sync-alt"></i>
+							<span class="nav-text">Clear Cache</span>
+						</a>
+					</li>
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-file-alt"></i>
 							<span class="nav-text">Forms</span>
