@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 // use App\Http\Controllers\Admin\DashboardController;
 
 use Illuminate\Support\Facades\Route;
@@ -19,6 +22,17 @@ Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboa
 //     });
 
 // });
+
+Route::middleware(['auth', ])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        Route::resource('permissions', PermissionController::class);
+        Route::resource('roles', RoleController::class);
+        Route::resource('users', UserController::class);
+
+    });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
