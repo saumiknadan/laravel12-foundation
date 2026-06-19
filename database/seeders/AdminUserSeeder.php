@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,7 +22,7 @@ class AdminUserSeeder extends Seeder
             ]
         );
 
-        // Assign the Spatie role to this user
-        $user->assignRole('Super Admin');
+        // Assign the protected system role to this user.
+        $user->assignRole('super-admin');
     }
 }

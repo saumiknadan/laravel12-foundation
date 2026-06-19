@@ -1,37 +1,26 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-// use App\Http\Controllers\Admin\DashboardController;
-
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
-
-// Route::middleware(['auth', 'role:Super Admin'])->group(function () {
-
-//     Route::get('/admin', function () {
-//         return "Admin Panel";
-//     });
-
-// });
-
-Route::middleware(['auth', ])
+Route::middleware(['auth'])
+// Route::middleware(['auth', 'role:super-admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
-
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('permissions', PermissionController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('users', UserController::class);
-
     });
 
 Route::get('/dashboard', function () {
