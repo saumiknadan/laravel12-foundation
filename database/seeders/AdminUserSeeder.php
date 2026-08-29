@@ -23,6 +23,6 @@ class AdminUserSeeder extends Seeder
         );
 
         // Assign the protected system role to this user.
-        $user->assignRole('super-admin');
+        // $user->assignRole('super-admin');
     }
 }

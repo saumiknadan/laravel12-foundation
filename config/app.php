@@ -67,6 +67,8 @@ return [
 
     'timezone' => 'UTC',
 
+    'super_admin_email' => env('SUPER_ADMIN_EMAIL'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
